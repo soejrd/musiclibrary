@@ -37,9 +37,14 @@ const computedSize = computed(() => {
 </script>
 
 <style scoped lang="scss">
+
+$hovercol: rgb(194 230 255);
+
 * {
     text-decoration: none;
 }
+
+
 .album {
     width: v-bind(computedSize);
     height: v-bind(computedSize);
@@ -56,6 +61,8 @@ const computedSize = computed(() => {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.02) 100%);
     background-size: 150% 100%;
     animation: bgScroll 2s infinite linear;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+
     user-select: none;
 
     img {
@@ -79,9 +86,26 @@ const computedSize = computed(() => {
         opacity: 0;
         z-index: 1;
     }
+    &::after {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to left, rgb(194 230 255 / 3%), rgb(194 230 255 / 40%), rgb(194 230 255 / 3%));
+        opacity: 0;
+        z-index: -1;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        border-radius: 2px;
+        transition: all 200ms ease-in-out;
+
+    }
 
     .text {
 
+        display: flex;
         flex-direction: column;
         gap: 8px;
 
@@ -91,8 +115,8 @@ const computedSize = computed(() => {
 
 
         opacity: 0;
-        transform: translateY(8px);
-        transition: all 200ms ease-in-out;
+        transform: translateY(4px);
+        transition: all 100ms ease-in-out;
 
         .title {
             font-weight: bold;
@@ -111,13 +135,21 @@ const computedSize = computed(() => {
         z-index: 1;
         transform: translateY(-8px);
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        //outline-color: #272A2D;
+        border-radius: 2px;
+        img {
+            border-radius: 2px;
+        }
+        
 
         &::before {
             opacity: 1;
         }
+        &::after {
+            opacity: 1;
+        }
 
         .text {
-            display: flex;
             transform: translateY(0);
             opacity: 1;
         }
