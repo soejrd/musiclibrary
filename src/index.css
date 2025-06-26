@@ -1,0 +1,13 @@
+/* ./src/index.css */
+@import "tailwindcss";
+
+body {
+  /* Apply the test variable */
+  background-color: black;
+}
+
+/* Keep original app styles */
+#app {
+  width: 100%;
+  height: 100vh;
+}
